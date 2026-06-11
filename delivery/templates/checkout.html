@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div style="display: flex; flex-direction: column; align-items: center; width: 100%; color: white; padding-top: 30px;">
+    
+    <h2 style="font-size: 1.8rem; margin-bottom: 20px;">Secure Checkout</h2>
+
+    <div style="background: rgba(0,0,0,0.8); width: 90%; max-width: 700px; padding: 30px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.1); backdrop-filter: blur(15px); box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
+        
+        <h3 style="font-size: 1.3rem; border-bottom: 1px solid #444; padding-bottom: 15px; margin-bottom: 20px;">Order Summary</h3>
+        
+        <div style="max-height: 250px; overflow-y: auto; margin-bottom: 25px; padding-right: 15px;">
+            {% for item in cart.items.all %}
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.05);">
+                <div style="display: flex; align-items: center; gap: 20px;">
+                    <img src="{{ item.picture }}" style="width: 60px; height: 60px; border-radius: 10px; object-fit: cover;">
+                    <span style="font-size: 1.1rem; font-weight: 500;">{{ item.name }}</span>
+                </div>
+                <span style="color: #00d2ff; font-weight: bold; font-size: 1.1rem; white-space: nowrap; margin-left: 20px;">
+                    ₹ {{ item.price }}
+                </span>
+            </div>
+            {% endfor %}
+        </div>
+
+        <div style="border-top: 2px solid #444; padding-top: 20px; display: flex; justify-content: space-between; align-items: center;">
+            <span style="font-size: 1.2rem; font-weight: bold;">Total Amount:</span>
+            <span style="font-size: 1.6rem; color: #00d2ff; font-weight: bold;">₹ {{ cart.total_price }}</span>
+        </div>
+
+        <div style="margin-top: 35px; text-align: center;">
+            <form action="{% url 'success' %}" method="POST">
+                <script
+                    src="https://checkout.razorpay.com/v1/checkout.js"
+                    data-key="{{ razorpay_key_id }}"
+                    data-amount="{{ payment.amount }}"
+                    data-currency="INR"
+                    data-order_id="{{ payment.id }}"
+                    data-buttontext="Pay Now with Razorpay"
+                    data-name="Meal Buddy"
+                    data-description="Food Delivery Payment"
+                    data-image="https://designshack.net/wp-content/uploads/Free-Simple-Restaurant-Logo-Template.jpg"
+                    data-prefill.name="{{ username }}"
+                    data-theme.color="#00d2ff">
+                </script>
+                <input type="hidden" name="hidden">
+            </form>
+        </div>
+    </div>
+
+    <div style="margin-top: 30px; margin-bottom: 50px;">
+        <a href="{% url 'show_cart' username %}" style="color: #00d2ff; text-decoration: none; font-size: 1rem; font-weight: bold;">
+            ← Back to Cart
+        </a>
+    </div>
+</div>
+
+<style>
+    /* Professional Razorpay Button Styling */
+    .razorpay-payment-button {
+        background: linear-gradient(90deg, #00d2ff 0%, #3a7bd5 100%) !important;
+        color: white !important;
+        padding: 14px 40px !important;
+        border-radius: 50px !important;
+        font-weight: bold !important;
+        border: none !important;
+        font-size: 1.1rem !important;
+        cursor: pointer !important;
+        width: 100%;
+        transition: transform 0.2s ease;
+        box-shadow: 0 4px 15px rgba(0, 210, 255, 0.3) !important;
+    }
+    .razorpay-payment-button:hover {
+        transform: scale(1.02);
+    }
+</style>
+{% endblock %}

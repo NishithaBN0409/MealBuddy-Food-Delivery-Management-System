@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="main-wrapper">
+
+    <div class="form-card">
+
+        <h2>Welcome to Meal Buddy 🍽️</h2>
+
+        <p class="hero-text">
+            Delicious food from your favorite restaurants,
+            delivered fast to your doorstep.
+        </p>
+
+        <div class="hero-buttons">
+            <a href="{% url 'open_signup' %}" class="btn">
+                Create Account
+            </a>
+
+            <a href="{% url 'open_signin' %}" class="btn">
+                Sign In
+            </a>
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

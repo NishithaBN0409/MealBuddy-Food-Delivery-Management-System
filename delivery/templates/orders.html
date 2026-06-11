@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="form-card">
+    <h2>Thank you, {{ username }}!</h2>
+
+    <p><strong>Delivery Address:</strong></p>
+    <p>{{ customer.address }}</p>
+
+    <p>Your order is on the way 🚀</p>
+
+    {% if cart_items %}
+        <a href="{% url 'customer_menu' cart_items.0.restaurant.id username %}" class="btn">
+            Back to Menu
+        </a>
+    {% else %}
+        <a href="/" class="btn">Home</a>
+    {% endif %}
+</div>
+{% endblock %}

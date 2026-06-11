@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="form-card">
+    <h2>Update Restaurant</h2>
+
+    <form action="{% url 'update_restaurant' restaurant.id %}" method="post">
+        {% csrf_token %}
+
+        <input type="text" name="name" value="{{ restaurant.name }}" placeholder="Restaurant Name" required>
+
+        <input type="text" name="picture" value="{{ restaurant.picture }}" placeholder="Image URL" required>
+
+        <input type="text" name="cuisine" value="{{ restaurant.cuisine }}" placeholder="Cuisine" required>
+
+        <input type="number" name="rating"
+               min="0" max="5" step="0.5"
+               value="{{ restaurant.rating }}">
+
+        <button type="submit" class="btn">Update Restaurant</button>
+    </form>
+</div>
+{% endblock %}

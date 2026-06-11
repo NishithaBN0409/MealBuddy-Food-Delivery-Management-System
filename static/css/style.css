@@ -1,0 +1,394 @@
+/* =========================
+   GOOGLE FONT
+========================= */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+/* =========================
+   RESET
+========================= */
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+/* =========================
+   BODY / BACKGROUND
+========================= */
+body{
+    background:
+    linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.72)),
+    url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=1600&auto=format&fit=crop');
+
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
+
+    min-height:100vh;
+    color:white;
+    overflow-x:hidden;
+}
+
+/* =========================
+   NAVBAR
+========================= */
+.navbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    padding:22px 55px;
+
+    background:rgba(0,0,0,0.45);
+    backdrop-filter:blur(12px);
+
+    border-bottom:1px solid rgba(255,255,255,0.08);
+}
+
+.logo{
+    font-size:24px;
+    font-weight:700;
+    color:white;
+    letter-spacing:0.5px;
+}
+
+.nav-links{
+    display:flex;
+    align-items:center;
+    gap:28px;
+}
+
+.nav-links a{
+    color:white;
+    text-decoration:none;
+    font-weight:500;
+    transition:0.3s;
+}
+
+.nav-links a:hover{
+    color:#00ffd5;
+}
+
+/* =========================
+   MAIN WRAPPER
+========================= */
+.main-wrapper{
+    position:relative;
+    z-index:2;
+
+    width:100%;
+    min-height:85vh;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    padding:40px 20px;
+}
+
+/* =========================
+   GLASSMORPHISM CARD
+========================= */
+.form-card{
+
+    width:420px;
+    max-width:100%;
+
+    padding:45px 38px;
+
+    border-radius:28px;
+
+    background:rgba(255,255,255,0.10);
+
+    backdrop-filter:blur(18px);
+
+    border:1px solid rgba(255,255,255,0.12);
+
+    box-shadow:
+    0 10px 40px rgba(0,0,0,0.45),
+    0 0 30px rgba(0,255,213,0.08);
+
+    text-align:center;
+
+    animation:fadeUp 0.8s ease;
+}
+
+/* =========================
+   HEADINGS
+========================= */
+h1,h2,h3{
+    color:white;
+}
+
+.form-card h2,
+.form-card h3{
+    font-size:48px;
+    font-weight:700;
+
+    margin-bottom:28px;
+
+    letter-spacing:1px;
+
+    text-shadow:0 0 15px rgba(0,0,0,0.5);
+}
+
+/* =========================
+   PARAGRAPH
+========================= */
+.form-card p{
+    color:rgba(255,255,255,0.88);
+    margin-bottom:22px;
+    font-size:15px;
+}
+
+/* =========================
+   FORM
+========================= */
+form{
+    width:100%;
+}
+
+/* =========================
+   INPUTS
+========================= */
+form input,
+form textarea{
+
+    width:100%;
+    display:block;
+
+    padding:16px 18px;
+
+    margin-bottom:22px;
+
+    border:none;
+    outline:none;
+
+    border-radius:15px;
+
+    background:rgba(255,255,255,0.94);
+
+    font-size:15px;
+
+    transition:0.3s;
+}
+
+/* INPUT FOCUS */
+form input:focus,
+form textarea:focus{
+
+    transform:scale(1.02);
+
+    box-shadow:
+    0 0 0 3px rgba(0,255,213,0.22),
+    0 0 18px rgba(0,255,213,0.20);
+}
+
+/* PLACEHOLDER */
+input::placeholder,
+textarea::placeholder{
+    color:#666;
+}
+
+/* =========================
+   BUTTONS
+========================= */
+.btn,
+form button,
+form input[type="submit"]{
+
+    width:100%;
+    display:block;
+
+    padding:15px;
+
+    margin-top:8px;
+
+    border:none;
+    outline:none;
+
+    border-radius:40px;
+
+    background:linear-gradient(
+        135deg,
+        #00ffd5,
+        #00c3ff
+    );
+
+    color:black;
+
+    font-size:17px;
+    font-weight:700;
+
+    text-decoration:none;
+
+    cursor:pointer;
+
+    transition:0.35s ease;
+}
+
+/* BUTTON HOVER */
+.btn:hover,
+form button:hover,
+form input[type="submit"]:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:
+    0 12px 25px rgba(0,255,213,0.35);
+}
+
+/* =========================
+   RESTAURANT CARD GRID
+========================= */
+.card-container {
+    display: flex;          /* This is the magic line that puts them beside each other */
+    flex-wrap: wrap;       /* This tells cards to move to the next line if there's no room */
+    justify-content: center; /* This centers the cards on the screen */
+    gap: 20px;             /* This adds space between the cards */
+    padding: 20px;
+    width: 100%;
+}
+
+/* =========================
+   RESTAURANT CARD
+========================= */
+.card {
+    width: 300px;          /* Give cards a fixed width so they don't stretch */
+    background: rgba(255, 255, 255, 0.1); /* Your existing transparent look */
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    padding: 15px;
+    text-align: center;
+}
+.card:hover{
+
+    transform:translateY(-8px);
+
+    box-shadow:
+    0 10px 35px rgba(0,0,0,0.45);
+}
+
+/* =========================
+   CARD IMAGE
+========================= */
+.card-img{
+
+    width:100%;
+    height:200px;
+
+    object-fit:cover;
+
+    border-radius:16px;
+
+    margin-bottom:14px;
+}
+
+/* =========================
+   CARD BUTTON GROUP
+========================= */
+.card-buttons{
+
+    display:flex;
+
+    gap:12px;
+
+    margin-top:15px;
+}
+
+/* =========================
+   DANGER BUTTON
+========================= */
+.danger{
+    background:linear-gradient(
+        135deg,
+        #ff4d4d,
+        #ff0000
+    );
+
+    color:white;
+}
+
+/* =========================
+   ANIMATION
+========================= */
+@keyframes fadeUp{
+
+    from{
+        opacity:0;
+        transform:translateY(35px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+@media(max-width:768px){
+
+    .navbar{
+        padding:18px 25px;
+    }
+
+    .logo{
+        font-size:20px;
+    }
+
+    .nav-links{
+        gap:18px;
+    }
+
+    .form-card{
+        width:100%;
+        padding:35px 25px;
+    }
+
+    .form-card h2,
+    .form-card h3{
+        font-size:38px;
+    }
+}
+/* =========================
+   WELCOME TEXT FIX
+========================= */
+
+.welcome-text,
+.sidebar h2,
+.sidebar h3 {
+
+    font-size: 42px;
+
+    font-weight: 700;
+
+    line-height: 1.2;
+
+    margin-bottom: 10px;
+
+    position: relative;
+
+    top: -120px;
+
+    color: white;
+
+    text-shadow: 0 0 15px rgba(0,0,0,0.6);
+}
+
+/* username text */
+.sidebar p,
+.username {
+
+    font-size: 26px;
+
+    font-weight: 600;
+
+    position: relative;
+
+    top: -110px;
+
+    color: #00ffd5;
+}

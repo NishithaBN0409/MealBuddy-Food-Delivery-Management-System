@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Admin Dashboard</h2>
+
+<div class="card-container">
+
+    <div class="card">
+        <h3>Add Restaurant</h3>
+        <a href="{% url 'open_add_restaurant' %}" class="btn">Add</a>
+    </div>
+
+    <div class="card">
+        <h3>View Restaurants</h3>
+        <a href="{% url 'open_show_restaurant' %}" class="btn">View</a>
+    </div>
+
+</div>
+{% endblock %}

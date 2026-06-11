@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div style="text-align: center; padding-top: 20px;">
+    <h2 style="color: white; font-size: 2.5rem; margin-bottom: 30px;">Restaurants</h2>
+
+    <div class="card-container" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 25px;">
+        {% for r in restaurants %}
+        <div class="card" style="background: rgba(0,0,0,0.5); padding: 20px; border-radius: 20px; width: 300px; backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.1);">
+            <img src="{{ r.picture }}" style="width: 100%; height: 180px; object-fit: cover; border-radius: 15px;">
+            <h3 style="color: white; margin-top: 15px;">{{ r.name }}</h3>
+            <p style="color: #ddd;">{{ r.cuisine }}</p>
+            <p style="color: #ffcc00;">⭐ {{ r.rating }}</p>
+
+            <div style="margin-top: 15px; display: flex; justify-content: space-around; gap: 10px;">
+                <a href="{% url 'open_update_restaurant' r.id %}" class="btn" style="background: #00d2ff; font-size: 0.8rem; padding: 8px 15px;">Edit</a>
+                <a href="{% url 'delete_restaurant' r.id %}" class="btn danger" style="background: #ff4b2b; font-size: 0.8rem; padding: 8px 15px;">Delete</a>
+                
+                <a href="{% url 'view_menu' r.id 'Admin@123' %}" class="btn" style="background: #00d2ff; font-size: 0.8rem; padding: 8px 15px;">Menu</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

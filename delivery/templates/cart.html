@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div style="display: flex; flex-direction: column; align-items: center; width: 100%; padding-top: 30px;">
+    
+    <h2 style="color: white; font-size: 2.5rem; margin-bottom: 40px; text-shadow: 2px 2px 4px rgba(0,0,0,0.5);">
+        Your Cart
+    </h2>
+
+    <div class="card-container" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; width: 90%;">
+        {% for item in cart.items.all %}
+        <div class="card" style="background: rgba(0,0,0,0.7); padding: 20px; border-radius: 15px; width: 250px; border: 1px solid rgba(255,255,255,0.1); backdrop-filter: blur(10px); display: flex; flex-direction: column; justify-content: space-between;">
+            <div>
+                <img src="{{ item.picture }}" style="width: 100%; height: 150px; object-fit: cover; border-radius: 10px;">
+                <h3 style="color: white; margin-top: 15px;">{{ item.name }}</h3>
+                <p style="color: #ccc; font-size: 0.9rem;">{{ item.description }}</p>
+            </div>
+            
+            <div>
+                <p style="font-weight: bold; color: #00d2ff; font-size: 1.2rem; margin-bottom: 10px;">₹ {{ item.price }}</p>
+                
+                <div class="cart-actions" style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 10px; text-align: center;">
+                    <a href="{% url 'remove_from_cart' item_id=item.id username=username %}" class="btn-delete" style="color: #ff4d4d; text-decoration: none; font-size: 0.95rem; font-weight: 500;">
+                        <i class="fa-solid fa-trash-can"></i> Remove Item
+                    </a>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+            <div style="background: rgba(0,0,0,0.5); padding: 30px; border-radius: 15px; text-align: center;">
+                <p style="color: white; font-size: 1.2rem; margin-bottom: 15px;">Your cart is empty. Go grab some food!</p>
+                <a href="{% url 'open_show_restaurant' %}" style="color: #00d2ff; text-decoration: none; font-weight: bold;">View Restaurants</a>
+            </div>
+        {% endfor %}
+    </div>
+
+    {% if cart.items.exists %}
+    <div style="margin-top: 40px; text-align: center; background: rgba(0,0,0,0.6); padding: 20px 50px; border-radius: 20px; border: 1px solid #00d2ff;">
+        <h3 style="color: white; margin-bottom: 15px;">Total Amount: <span style="color: #00d2ff;">₹ {{ cart.total_price }}</span></h3>
+        
+        <form action="{% url 'checkout' username %}">
+            <button class="btn" style="background: #00d2ff; color: black; padding: 12px 40px; border-radius: 30px; font-weight: bold; border: none; cursor: pointer; font-size: 1.1rem;">
+                Proceed to Checkout
+            </button>
+        </form>
+    </div>
+    {% endif %}
+
+</div>
+{% endblock %}

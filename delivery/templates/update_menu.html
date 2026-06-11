@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="main-wrapper">
+    <h2>Menu for {{ restaurant.name }}</h2>
+
+    <div class="card-container">
+        {% for item in itemList %}
+        <div class="card">
+            <img src="{{ item.picture }}" class="card-img" style="width: 100px;">
+            <h3>{{ item.name }}</h3>
+            <p>{{ item.description }}</p>
+            <p><strong>₹ {{ item.price }}</strong></p>
+            <p>{{ item.vegeterian|yesno:"Veg,Non-Veg" }}</p>
+        </div>
+        {% endfor %}
+    </div>
+
+    <hr>
+
+    <div class="form-card">
+        <h2>Add New Item</h2>
+        <form action="{% url 'update_menu' restaurant.id %}" method="post">
+            {% csrf_token %}
+            <input type="text" name="name" placeholder="Item Name" required>
+            <textarea name="description" placeholder="Description" required></textarea>
+            <input type="number" name="price" step="0.01" placeholder="Price" required>
+            <label>
+                <input type="checkbox" name="vegeterian"> Vegetarian
+            </label>
+            <input type="url" name="picture" placeholder="Image URL">
+            <button type="submit" class="btn">Add Item to Menu</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

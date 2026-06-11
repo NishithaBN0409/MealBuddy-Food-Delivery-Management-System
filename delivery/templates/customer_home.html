@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2>Welcome {{username}}</h2>
+
+<div class="card-container">
+
+{% for r in restaurantList %}
+    <div class="card">
+
+        <img src="{{ r.picture }}" class="card-img">
+
+        <h3>{{ r.name }}</h3>
+        <p>{{ r.cuisine }}</p>
+        <p>⭐ {{ r.rating }}</p>
+
+        <a href="{% url 'view_menu' r.id username %}" class="btn">
+            View Menu
+        </a>
+
+    </div>
+{% endfor %}
+
+</div>
+
+{% endblock %}
